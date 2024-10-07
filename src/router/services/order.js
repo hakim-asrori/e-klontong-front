@@ -7,7 +7,7 @@ export default [
     name: "order",
     component: IndexView,
     meta: {
-      requiresAuth: false,
+      requiresAuth: true,
     },
     // redirect: { name: "orderAllView" },
     // children: [
