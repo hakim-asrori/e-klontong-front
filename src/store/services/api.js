@@ -5,7 +5,7 @@ import snakecaseKeys from "snakecase-keys";
 
 const api = {
   init() {
-    axios.defaults.baseURL = "https://e-klontong.hakimasrori.my.id/api/v1/";
+    axios.defaults.baseURL = "https://api.kenshuuexpress.id/api/v1/";
     // axios.defaults.baseURL = "http://127.0.0.1:8000/api/v1/";
     // axios.defaults.baseURL = "http://192.168.43.247:8000/api/v1/";
     axios.defaults.headers.post["Content-Type"] = "multipart/form-data";

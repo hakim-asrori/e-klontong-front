@@ -1,38 +1,37 @@
 <script setup>
-import { CCard, CCardBody, CCardHeader } from '@coreui/vue';
+import { CCard, CCardBody, CCardHeader, CCardText, CImage } from "@coreui/vue";
+import planeImage from "@/assets/img/icons/plane.png";
+import ferryImage from "@/assets/img/icons/ferry.png";
 </script>
 
 <template>
-  <div class="h-container">
-    <router-link :to="{ name: 'deliveryProduct', params: { delivery: 'udara' } }" class="text-decoration-none">
-      <CCard style="min-height: 45vh;" class="rounded-0 border-0 bg-primary-subtle">
-        <CCardHeader class="border-0 bg-primary-subtle pt-4 ps-5">
-          <h1 style="font-size: 3rem;">Udara</h1>
-        </CCardHeader>
-        <CCardBody class="position-relative">
-          <div class="position-absolute" style="bottom: 5rem; right: 3rem; transform: rotate(-20deg);">
-            <i class="fa-solid fa-plane fa-2xl" style="font-size: 7rem;"></i>
-          </div>
-        </CCardBody>
-      </CCard>
+  <div
+    class="h-container d-flex align-items-center justify-content-center gap-4"
+  >
+    <router-link
+      :to="{ name: 'deliveryProduct', params: { delivery: 'udara' } }"
+      class="text-decoration-none card shadow-sm"
+    >
+      <CCardBody>
+        <CImage :src="planeImage" />
+        <CCardText class="text-center mt-3 fw-bold h3">Udara</CCardText>
+      </CCardBody>
     </router-link>
-    <router-link :to="{ name: 'deliveryProduct', params: { delivery: 'laut' } }" class="text-decoration-none">
-      <CCard style="min-height: 48vh;" class="rounded-0 border-0 bg-success-subtle">
-        <CCardHeader class="border-0 bg-success-subtle pt-4 ps-5">
-          <h1 style="font-size: 3rem;">Laut</h1>
-        </CCardHeader>
-        <CCardBody class="position-relative">
-          <div class="position-absolute" style="bottom: 5rem; right: 3rem; transform: rotate(-20deg);">
-            <i class="fa-solid fa-ferry fa-2xl" style="font-size: 7rem;"></i>
-          </div>
-        </CCardBody>
-      </CCard>
+    <router-link
+      :to="{ name: 'deliveryProduct', params: { delivery: 'laut' } }"
+      class="text-decoration-none card shadow-sm"
+    >
+      <CCardBody>
+        <CImage :src="ferryImage" />
+        <CCardText class="text-center mt-3 fw-bold h3">Laut</CCardText>
+      </CCardBody>
     </router-link>
   </div>
 </template>
 
 <style scoped>
 .h-container {
-  max-height: 100vh;
+  min-height: 90vh;
+  width: 100%;
 }
 </style>
