@@ -1,6 +1,16 @@
 <script setup>
 import { CListGroup, CListGroupItem } from "@coreui/vue";
 import Cookies from "js-cookie";
+import { ref } from "vue";
+import { onMounted } from "vue";
+
+const user = ref({});
+
+const getUser = async () => {
+  const cookiesUser = Cookies.get("user");
+
+  user.value = JSON.parse(cookiesUser);
+};
 
 const logoutProcess = async (e) => {
   e.preventDefault();
@@ -10,6 +20,10 @@ const logoutProcess = async (e) => {
 
   window.location.href = "/";
 };
+
+onMounted(() => {
+  getUser();
+});
 </script>
 
 <template>
@@ -20,11 +34,7 @@ const logoutProcess = async (e) => {
         alt=""
         style="border-radius: 50%; height: 100px; width: 100px"
       />
-      <h4 class="my-2">Hakim Asrori</h4>
-      <div>
-        <i class="fa-solid fa-location-dot"></i>
-        Indramayu
-      </div>
+      <h4 class="my-2">{{ user.name }}</h4>
     </div>
     <CListGroup flush>
       <a class="list-group-item"> &nbsp; </a>
