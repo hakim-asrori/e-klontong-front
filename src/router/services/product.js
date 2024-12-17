@@ -1,5 +1,6 @@
 import DetailView from "@/views/products/DetailView.vue";
 import ListView from "@/views/products/ListView.vue";
+import SearchView from "@/views/products/SearchView.vue";
 
 export default [
   {
@@ -7,6 +8,14 @@ export default [
     name: "productList",
     component: ListView,
     props: true,
+    meta: {
+      requiresAuth: false,
+    },
+  },
+  {
+    path: "/product/search",
+    name: "productSearch",
+    component: SearchView,
     meta: {
       requiresAuth: false,
     },

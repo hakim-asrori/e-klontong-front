@@ -24,12 +24,16 @@ const checkAuth = async () => {
 const toLogin = () => {
   $router.push({ name: 'login' })
 }
+
+const toSearch = () => {
+  $router.push({ name: 'productSearch' })
+}
 </script>
 
 <template>
   <div fluid
     class="gap-sm-4 gap-3 d-flex flex-row align-items-center justify-content-between py-3 mb-3 fixed-top bg-white px-3">
-    <CInputGroup size="sm" style="background-color: #e4e4e4;" class="rounded">
+    <CInputGroup size="sm" style="background-color: #e4e4e4;" class="rounded" @click="toSearch">
       <CInputGroupText style="background-color: #e4e4e4;"><i class="fa-solid fa-search"
           style="color: rgba(37, 43, 54, 0.6);"></i>
       </CInputGroupText>

@@ -19,7 +19,7 @@ const getProduct = async () => {
 
   try {
     const response = await $store.dispatch("postData", ["products", {
-      sort_by: 'total_sales',
+      sort_by: 'last_seen',
       sort_direction: 'desc',
       per_page: 10
     }])

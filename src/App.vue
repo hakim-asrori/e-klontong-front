@@ -32,5 +32,5 @@ const checkAuth = async () => {
 <template>
   <router-view></router-view>
   <Navbar
-    v-if="!['login', 'register', 'productDetail', 'categoryIndex', 'orderOne', 'orderAll', 'indexAddress', 'createAddress'].includes($router.currentRoute.value.name)" />
+    v-if="!['login', 'register', 'productDetail', 'categoryIndex', 'orderOne', 'orderAll', 'indexAddress', 'createAddress', 'productSearch'].includes($router.currentRoute.value.name)" />
 </template>

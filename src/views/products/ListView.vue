@@ -45,7 +45,7 @@ const getProduct = async () => {
   }
 
   if ($props.type == "all-populars") {
-    params.sort_by = "total_sales";
+    params.sort_by = "last_seen";
     params.sort_direction = "desc";
   }
 
