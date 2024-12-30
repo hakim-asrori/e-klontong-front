@@ -80,7 +80,7 @@ const formatRupiah = (price) => {
     >
       <CSpinner class="mb-3" />
     </div>
-    <CRow class="px-2" v-else>
+    <CRow class="px-2" v-if="category.direction == 1">
       <CCard
         v-for="(product, index) in category.products"
         :key="index"
@@ -97,6 +97,19 @@ const formatRupiah = (price) => {
         </CCardBody>
       </CCard>
     </CRow>
+    <div class="d-flex gap-3 overflow-x-auto content"  v-if="category.direction == 0">
+      <CCard v-for="(product, index) in category.products" :key="index" class="mb-3 card"
+        style="max-width: 175px; width: 100%; min-width: 175px; cursor: pointer;"
+        @click="toDetailProduct(product.slug)">
+        <CCardImage orientation="top" :src="product.images" height="150" />
+        <CCardBody class="text-center p-1 w-100">
+          <CCardTitle>{{ product.name }}</CCardTitle>
+          <CCardText>
+            {{ formatRupiah(product.price) }}
+          </CCardText>
+        </CCardBody>
+      </CCard>
+    </div>
     <hr>
   </div>
 </template>
