@@ -7,6 +7,7 @@ import Banner from "../components/home/Banner.vue"
 import Category from "../components/home/Category.vue"
 import ProductLatest from "../components/home/ProductLatest.vue"
 import ProductPopular from "../components/home/ProductPopular.vue"
+import ProductOther from "../components/home/ProductOther.vue"
 </script>
 
 <template>
@@ -16,5 +17,6 @@ import ProductPopular from "../components/home/ProductPopular.vue"
     <Category />
     <ProductLatest />
     <ProductPopular />
+    <ProductOther />
   </CContainer>
 </template>
