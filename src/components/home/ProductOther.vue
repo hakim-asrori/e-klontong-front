@@ -66,7 +66,7 @@ const formatRupiah = (price) => {
     :key="index"
     class="mb-3"
   >
-    <div class="mb-1 d-flex align-items-center justify-content-between">
+    <div class="mb-3 d-flex align-items-center justify-content-between">
       <h4 class="fw-bold">{{ category.name }}</h4>
       <router-link
         :to="{ name: 'categoryIndex', params: { slug: category.slug } }"
@@ -97,6 +97,7 @@ const formatRupiah = (price) => {
         </CCardBody>
       </CCard>
     </CRow>
+    <hr>
   </div>
 </template>
 

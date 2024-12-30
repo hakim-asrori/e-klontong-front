@@ -68,6 +68,7 @@ const formatRupiah = (price) => {
       </CCard>
     </div>
   </div>
+  <hr>
 </template>
 
 <style scoped>
