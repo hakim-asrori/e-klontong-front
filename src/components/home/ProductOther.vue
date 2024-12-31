@@ -80,12 +80,38 @@ const formatRupiah = (price) => {
     >
       <CSpinner class="mb-3" />
     </div>
-    <CRow class="px-2" v-if="category.direction == 1">
+    <CRow v-if="category.direction == 1" class="">
+      <CCol
+        lg="3"
+        md="4"
+        v-for="(product, index) in category.products"
+        :key="index"
+        class="mb-3 col-6"
+      >
+        <CCard
+          class="h-100"
+          style="cursor: pointer"
+          @click="toDetailProduct(product.slug)"
+        >
+          <CCardImage orientation="top" :src="product.images" height="150" />
+          <CCardBody class="text-center p-1 w-100">
+            <CCardTitle>{{ product.name }}</CCardTitle>
+            <CCardText>
+              {{ formatRupiah(product.price) }}
+            </CCardText>
+          </CCardBody>
+        </CCard>
+      </CCol>
+    </CRow>
+    <div
+      class="d-flex gap-3 overflow-x-auto content"
+      v-if="category.direction == 0"
+    >
       <CCard
         v-for="(product, index) in category.products"
         :key="index"
-        class="card col-6 col-lg-3 col-md-4"
-        style="cursor: pointer;"
+        class="mb-3 card"
+        style="max-width: 175px; width: 100%; min-width: 175px; cursor: pointer"
         @click="toDetailProduct(product.slug)"
       >
         <CCardImage orientation="top" :src="product.images" height="150" />
@@ -96,21 +122,8 @@ const formatRupiah = (price) => {
           </CCardText>
         </CCardBody>
       </CCard>
-    </CRow>
-    <div class="d-flex gap-3 overflow-x-auto content"  v-if="category.direction == 0">
-      <CCard v-for="(product, index) in category.products" :key="index" class="mb-3 card"
-        style="max-width: 175px; width: 100%; min-width: 175px; cursor: pointer;"
-        @click="toDetailProduct(product.slug)">
-        <CCardImage orientation="top" :src="product.images" height="150" />
-        <CCardBody class="text-center p-1 w-100">
-          <CCardTitle>{{ product.name }}</CCardTitle>
-          <CCardText>
-            {{ formatRupiah(product.price) }}
-          </CCardText>
-        </CCardBody>
-      </CCard>
     </div>
-    <hr>
+    <hr />
   </div>
 </template>
 

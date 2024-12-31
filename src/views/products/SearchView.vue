@@ -19,7 +19,7 @@ import { useRouter } from "vue-router";
 import { useStore } from "vuex";
 
 const $store = useStore();
-const  $router = useRouter()
+const $router = useRouter();
 const search = ref(null);
 const isSearch = ref(false);
 const productPopulars = ref([]);
@@ -50,14 +50,11 @@ const getProductPopular = async () => {
   isLoading.value = true;
 
   let params = productFilters.value;
-  params.per_page = perPage
-  params.search = search.value
+  params.per_page = perPage;
+  params.search = search.value;
 
   try {
-    const response = await $store.dispatch("postData", [
-      "products",
-      params,
-    ]);
+    const response = await $store.dispatch("postData", ["products", params]);
 
     if (response.code == $store.state.STATUS_CODE.DATA_OK) {
       if (response.data != undefined && response.data.length > 0) {
@@ -80,8 +77,8 @@ const onSearchActive = (filter) => {
   isSearch.value = true;
   search.value = filter;
   productFilters.value.page = 1;
-  productLastPage.value = false
-  productPopulars.value = []
+  productLastPage.value = false;
+  productPopulars.value = [];
   getProductPopular();
 };
 
@@ -90,17 +87,17 @@ const onSearch = () => {
   if (searchTimeout) {
     clearTimeout(searchTimeout);
   }
-  
+
   if (search.value.length < 1) {
     perPage.value = 4;
     isSearch.value = false;
   } else {
     perPage.value = 10;
   }
-  productPopulars.value = []
+  productPopulars.value = [];
   productFilters.value.page = 1;
-  productLastPage.value = false
-  
+  productLastPage.value = false;
+
   searchTimeout = setTimeout(() => {
     getProductPopular();
   }, 300);
@@ -121,8 +118,8 @@ const formatRupiah = (price) => {
 };
 
 const toDetailProduct = (id) => {
-  $router.push({ name: 'productDetail', params: { id } })
-}
+  $router.push({ name: "productDetail", params: { id } });
+};
 </script>
 
 <template>
@@ -150,6 +147,7 @@ const toDetailProduct = (id) => {
       </CButton>
     </CInputGroup>
   </div>
+
   <div style="margin-top: 4.5rem" class="px-3" v-if="!isSearch">
     <div
       v-for="(productPopular, index) in productPopulars"
@@ -162,23 +160,26 @@ const toDetailProduct = (id) => {
       <hr />
     </div>
   </div>
+
   <div v-else style="margin-top: 4.5rem" class="px-3">
     <CRow class="">
-      <CCard
+      <CCol
+        lg="3"
+        md="4"
+        class="col-6 mb-3"
         v-for="(product, index) in productPopulars"
         :key="index"
-        class="col-6 col-lg-3 col-md-4"
-        style="cursor: pointer"
-        @click="toDetailProduct(product.slug)"
       >
-        <CCardImage orientation="top" :src="product.image" height="150" />
-        <CCardBody class="text-center p-1 w-100">
-          <CCardTitle>{{ product.name }}</CCardTitle>
-          <CCardText>
-            {{ formatRupiah(product.price) }}
-          </CCardText>
-        </CCardBody>
-      </CCard>
+        <CCard style="cursor: pointer" @click="toDetailProduct(product.slug)" class="h-100">
+          <CCardImage orientation="top" :src="product.image" height="150" />
+          <CCardBody class="text-center p-1 w-100">
+            <CCardTitle>{{ product.name }}</CCardTitle>
+            <CCardText>
+              {{ formatRupiah(product.price) }}
+            </CCardText>
+          </CCardBody>
+        </CCard>
+      </CCol>
     </CRow>
   </div>
 </template>

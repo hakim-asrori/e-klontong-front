@@ -34,7 +34,7 @@ const getCategory = async () => {
   <div class="d-flex align-items-center justify-content-center" v-if="isLoading">
     <CSpinner class="mb-3" />
   </div>
-  <div v-else class="d-flex mb-4"
+  <div v-else class="d-flex mb-4 overflow-x-auto content"
     :class="categories.length == 2 ? 'align-items-center justify-content-start gap-4' : 'justify-content-between'">
     <router-link :to="{ name: 'categoryIndex', params: { slug: category.slug } }"
       v-for="(category, index) in categories" :key="index"
@@ -52,5 +52,9 @@ const getCategory = async () => {
 .h-card div {
   min-height: 50px;
   min-width: 50px;
+}
+
+.content::-webkit-scrollbar {
+  display: none;
 }
 </style>
