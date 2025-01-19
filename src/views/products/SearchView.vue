@@ -7,11 +7,19 @@ import {
   CCardImage,
   CCardText,
   CCardTitle,
+  CCloseButton,
   CCol,
   CContainer,
+  CForm,
+  CFormCheck,
   CFormInput,
+  CFormLabel,
   CInputGroup,
   CInputGroupText,
+  COffcanvas,
+  COffcanvasBody,
+  COffcanvasHeader,
+  COffcanvasTitle,
   CRow,
 } from "@coreui/vue";
 import { onMounted, onUnmounted, ref } from "vue";
@@ -32,6 +40,7 @@ const productFilters = ref({
 });
 const productLastPage = ref(false);
 const isLoading = ref(false);
+const showAllFilter = ref(false);
 
 onMounted(() => {
   window.addEventListener("scroll", handleScroll);
@@ -113,6 +122,20 @@ const handleScroll = () => {
   }
 };
 
+const handleFilter = () => {
+  productFilters.value.page = 1;
+  productPopulars.value = [];
+  showAllFilter.value = false;
+  getProductPopular();
+};
+
+const handleCancelFilter = () => {
+  productFilters.value.search = "";
+  productFilters.value.sort_by = "last_seen";
+  productFilters.value.sort_direction = "desc";
+  handleFilter();
+};
+
 const formatRupiah = (price) => {
   return util.rupiah(price);
 };
@@ -145,6 +168,9 @@ const toDetailProduct = (id) => {
           style="color: rgba(37, 43, 54, 0.6)"
         ></i>
       </CButton>
+      <CButton style="background-color: #e4e4e4" @click="showAllFilter = true">
+        <i class="fa-solid fa-filter text-primary"></i>
+      </CButton>
     </CInputGroup>
   </div>
 
@@ -170,7 +196,11 @@ const toDetailProduct = (id) => {
         v-for="(product, index) in productPopulars"
         :key="index"
       >
-        <CCard style="cursor: pointer" @click="toDetailProduct(product.slug)" class="h-100">
+        <CCard
+          style="cursor: pointer"
+          @click="toDetailProduct(product.slug)"
+          class="h-100"
+        >
           <CCardImage orientation="top" :src="product.image" height="150" />
           <CCardBody class="text-center p-1 w-100">
             <CCardTitle>{{ product.name }}</CCardTitle>
@@ -182,6 +212,80 @@ const toDetailProduct = (id) => {
       </CCol>
     </CRow>
   </div>
+
+  <COffcanvas
+    placement="end"
+    :visible="showAllFilter"
+    @hide="
+      () => {
+        showAllFilter = !showAllFilter;
+      }
+    "
+  >
+    <COffcanvasHeader>
+      <COffcanvasTitle>Filter</COffcanvasTitle>
+      <CCloseButton
+        class="text-reset"
+        @click="
+          () => {
+            showAllFilter = false;
+          }
+        "
+      />
+    </COffcanvasHeader>
+    <COffcanvasBody>
+      <CForm @submit.prevent="handleFilter()">
+        <CFormLabel>Price</CFormLabel>
+        <CFormCheck
+          :checked="
+            productFilters.sort_by == 'price' &&
+            productFilters.sort_direction == 'asc'
+          "
+          type="radio"
+          name="flexRadioDefault"
+          label="Sort from lowest price"
+          :value="JSON.stringify({ sort_by: 'price', sort_direction: 'asc' })"
+          @change="
+            ($event) => {
+              productFilters.sort_by = JSON.parse($event.target.value).sort_by;
+              productFilters.sort_direction = JSON.parse(
+                $event.target.value
+              ).sort_direction;
+            }
+          "
+        />
+        <CFormCheck
+          :checked="
+            productFilters.sort_by == 'price' &&
+            productFilters.sort_direction == 'desc'
+          "
+          type="radio"
+          name="flexRadioDefault"
+          label="Sort by most expensive price"
+          :value="JSON.stringify({ sort_by: 'price', sort_direction: 'desc' })"
+          @change="
+            ($event) => {
+              productFilters.sort_by = JSON.parse($event.target.value).sort_by;
+              productFilters.sort_direction = JSON.parse(
+                $event.target.value
+              ).sort_direction;
+            }
+          "
+        />
+        <hr />
+        <CButton type="submit" class="w-100 mb-3" color="primary"
+          >Apply Changes</CButton
+        >
+        <CButton
+          @click="handleCancelFilter()"
+          class="w-100"
+          color="primary"
+          variant="outline"
+          >Clear Changes</CButton
+        >
+      </CForm>
+    </COffcanvasBody>
+  </COffcanvas>
 </template>
 
 <style scoped></style>
