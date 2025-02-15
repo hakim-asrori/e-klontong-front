@@ -38,16 +38,17 @@ onMounted(() => {
     </div>
     <CListGroup flush>
       <a class="list-group-item"> &nbsp; </a>
-      <!-- <a
-        href=""
+      <router-link
+        :to="{ name: 'indexAddress' }"
         class="list-group-item d-flex justify-content-between align-items-center"
       >
         <div>
-          <i class="text-primary fa-solid fa-heart me-3"></i>
-          <span class="fw-semibold">Wishlist</span>
+          <i class="text-primary fa-solid fa-address-book me-3"></i>
+          <span class="fw-semibold">Address</span>
         </div>
         <i class="fa-solid fa-chevron-right text-secondary"></i>
-      </a>
+      </router-link>
+      <!-- 
       <a
         href=""
         class="list-group-item d-flex justify-content-between align-items-center"

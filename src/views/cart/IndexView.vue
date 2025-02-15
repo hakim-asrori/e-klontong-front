@@ -26,7 +26,7 @@ if (!carts) {
         >Laut</router-link
       >
     </div>
-    <div style="margin-top: 115px">
+    <div style="margin-top: 115px; padding-bottom: 100px">
       <router-view />
     </div>
   </div>
