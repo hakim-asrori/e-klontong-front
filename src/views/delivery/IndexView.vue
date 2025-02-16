@@ -9,7 +9,7 @@ import ferryImage from "@/assets/img/icons/ferry.png";
     class="h-container d-flex align-items-center justify-content-center gap-4"
   >
     <router-link
-      :to="{ name: 'deliveryProduct', params: { delivery: 'udara' } }"
+      to="/delivery/udara"
       class="text-decoration-none card shadow-sm"
     >
       <CCardBody>
@@ -18,7 +18,7 @@ import ferryImage from "@/assets/img/icons/ferry.png";
       </CCardBody>
     </router-link>
     <router-link
-      :to="{ name: 'deliveryProduct', params: { delivery: 'laut' } }"
+      to="/delivery/laut"
       class="text-decoration-none card shadow-sm"
     >
       <CCardBody>

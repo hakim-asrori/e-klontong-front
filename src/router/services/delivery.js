@@ -8,8 +8,14 @@ export default [
     component: IndexView,
   },
   {
-    path: "/delivery/:delivery('laut'|'udara')",
-    name: "deliveryProduct",
+    path: "/delivery/udara",
+    name: "deliveryProductUdara",
+    props: true,
+    component: ProductView,
+  },
+  {
+    path: "/delivery/laut",
+    name: "deliveryProductLaut",
     props: true,
     component: ProductView,
   },

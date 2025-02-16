@@ -164,7 +164,10 @@ const handleCancel = async (id) => {
 };
 
 const redirectTo = (id) => {
-  window.open(`https://api.kenshuuexpress.id/export/pdf/order/${id}`, "_blank");
+  window.open(
+    `https://api.kenshuuexpress.id/export/pdf/order/${id}?print=true`,
+    "_blank"
+  );
 };
 </script>
 
